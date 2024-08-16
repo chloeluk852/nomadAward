@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preface Creative Media Design Movie Trailer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+        color: #fff;
+        font-family: "Montserrat", sans-serif;
+      }
+      .video-container {
+        width: 80vw; /* 80% of the viewport width */
+        height: 85vh; /* 85% of the viewport height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      .video-nav {
+        margin-top: 20px;
+      }
+      .video-nav a {
+        color: #fff;
+        margin: 0 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="videoTitle">Creative Media Design Student Movie Trailer</h1>
+    <div class="video-container">
+      <video id="videoPlayer" controls autoplay muted>
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-nav">
+      <a href="?video=1">Abby Yu</a>
+      <a href="?video=2">Addison Ong</a>
+      <a href="?video=3">Adelle Wu</a>
+      <a href="?video=4"></a>
+    </div>
+
+    <script>
+      const videos = {
+        1: {
+          title: "Video 1 Title",
+          src: "video/video1.mp4",
+        },
+        2: {
+          title: "Video 2 Title",
+          src: "video/video2.mp4",
+        },
+        3: {
+          title: "Video 3 Title",
+          src: "video/video3.mp4",
+        },
+      };
+
+      function loadVideo() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get("video") || "1"; // Default to '1' if no parameter
+
+        const video = videos[videoId];
+        if (video) {
+          document.getElementById("videoTitle").textContent = video.title;
+          const videoPlayer = document.getElementById("videoPlayer");
+          videoPlayer.src = video.src;
+        } else {
+          document.getElementById("videoTitle").textContent = "Video Not Found";
+        }
+      }
+
+      window.onload = loadVideo;
+    </script>
+  </body>
+</html>
