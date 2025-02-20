@@ -3,96 +3,205 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Preface Creative Media Design Movie Trailer</title>
+    <link rel="shortcut icon" href="images/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <title>Nomad Awards Student Project - Preface</title>
     <style>
-      body,
-      html {
+      body {
+        font-family: "Montserrat", sans-serif;
+
+        margin: 0 auto;
+        background-color: #f0f0f0;
+      }
+
+      .sticky {
         margin: 0;
         padding: 0;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #000;
-        color: #fff;
-        font-family: "Montserrat", sans-serif;
-      }
-      .video-container {
-        width: 80vw; /* 80% of the viewport width */
-        height: 85vh; /* 85% of the viewport height */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      video {
-        width: 100%;
-        height: auto;
-        display: block;
+        overflow: hidden;
+        background-color: #ffffff;
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 0;
+        z-index: 100; /* Ensure the navbar is above other content */
       }
       h1 {
-        margin-bottom: 20px;
+        text-align: center;
+        color: #404041;
+        margin-top: 60px;
       }
-      .video-nav {
-        margin-top: 20px;
+      h3 {
+        text-align: center;
+        color: #404041;
       }
-      .video-nav a {
-        color: #fff;
-        margin: 0 10px;
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      a {
+        text-decoration: none;
+        color: #85bcce;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        color: #0056b3;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+      }
+      .card {
+        width: 200px;
+        margin: 10px;
+        text-align: center;
+        background-color: white;
+        color: #404041;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+      }
+      .card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      .card h4 {
+        color: #6d6d6d;
+      }
+      .card p {
+        padding: 10px;
+        margin: 0;
+      }
+      .card h2,
+      .card h4,
+      .card p {
+        color: #404041;
+        padding: 10px;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .toggle-view {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .toggle-view:hover {
+        background-color: #0056b3;
+      }
+      .hidden {
+        display: none;
       }
     </style>
   </head>
   <body>
-    <h1 id="videoTitle">Creative Media Design Student Movie Trailer</h1>
-    <div class="video-container">
-      <video id="videoPlayer" controls autoplay muted>
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    <div class="video-nav">
-      <a href="?video=1">Abby Yu</a>
-      <a href="?video=2">Addison Ong</a>
-      <a href="?video=3">Adelle Wu</a>
-      <a href="?video=4"></a>
-    </div>
+    <header>
+      <img
+        src="images/NA-banner.png"
+        alt="Nomad Awards Banner"
+        style="width: 100%"
+      />
+    </header>
+    <h1>Nomad Awards</h1>
+    <h3>Winner Projects</h3>
 
+    <div id="cardContainer" class="container"></div>
     <script>
-      const videos = {
-        1: {
-          title: "Video 1 Title",
-          src: "video/video1.mp4",
-        },
-        2: {
-          title: "Video 2 Title",
-          src: "video/video2.mp4",
-        },
-        3: {
-          title: "Video 3 Title",
-          src: "video/video3.mp4",
-        },
+      const imageMap = {
+        "AI Trip Planner": "images/AITripPlanner.png",
+        "Art Tracker": "images/ArtTracker.png",
+        "ExercAI App": "images/exercAI.png",
+        "HK Guide": "images/HKGuide.png",
+        Mall: "images/mall.JPG",
+        "Minecraft Art Gallery": "images/MinecraftArtGallery.png",
+        QuickSort: "images/QuickSort.JPG",
       };
 
-      function loadVideo() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const videoId = urlParams.get("video") || "1"; // Default to '1' if no parameter
+      const studentNames = {
+        "AI Trip Planner": "Marcus Lai",
+        "Art Tracker": "Hazel",
+        "ExercAI App": "Adrian, Andrew, Isaac",
+        "HK Guide": "Marcus Cheung, Dior, Andrew",
+        Mall: "Evan, Leann",
+        "Minecraft Art Gallery": "Easton",
+        QuickSort: "Kingsley",
+      };
 
-        const video = videos[videoId];
-        if (video) {
-          document.getElementById("videoTitle").textContent = video.title;
-          const videoPlayer = document.getElementById("videoPlayer");
-          videoPlayer.src = video.src;
-        } else {
-          document.getElementById("videoTitle").textContent = "Video Not Found";
-        }
-      }
+      const links = {
+        "AI Trip Planner": "https://bit.ly/tripsplanner",
+        "Art Tracker":
+          "video.html?title=Art Tracker&src=https://drive.google.com/file/d/1rMeisCjDU_Nh9DlctIkHIGS_eiPcxHgU/preview&student=Hazel",
+        "ExercAI App":
+          "https://www.figma.com/proto/YFbzku3Bwutz2Ihx31Ahy2/Exercai?node-id=0-1&t=jZ2NoV2IZXQHRVNV-1",
+        "HK Guide": "https://hkguide.vercel.app/",
+        Mall: "https://www.instagram.com/preface.ai/reel/DGIviYNSe8Q/?hl=en",
+        "Minecraft Art Gallery":
+          "video.html?title=Minecraft Art Gallery&src=https://drive.google.com/file/d/1d9ix73HbsZD9VxdiwcYiX_tYPXonFevL/preview&student=Easton",
+        QuickSort:
+          "https://www.instagram.com/preface.ai/reel/DGMxUpzo1ec/?hl=en",
+      };
 
-      window.onload = loadVideo;
+      const projects = [
+        "AI Trip Planner",
+        "Art Tracker",
+        "ExercAI App",
+        "HK Guide",
+        "Mall",
+        "Minecraft Art Gallery",
+        "QuickSort",
+      ];
+
+      const cardContainer = document.getElementById("cardContainer");
+
+      projects.forEach((project) => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const link = document.createElement("a");
+        link.href = links[project];
+        link.target = "_blank";
+
+        const image = document.createElement("img");
+        image.src = imageMap[project];
+        link.appendChild(image);
+
+        card.appendChild(link);
+
+        const title = document.createElement("h2");
+        title.textContent = project;
+        card.appendChild(title);
+
+        const subtitle = document.createElement("h4");
+        subtitle.textContent = studentNames[project];
+        card.appendChild(subtitle);
+
+        cardContainer.appendChild(card);
+      });
     </script>
   </body>
 </html>
